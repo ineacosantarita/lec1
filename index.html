@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Piel del Cocodrilo - Recurso Educativo Interactivo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-emerald-900 via-teal-900 to-slate-900 text-slate-100 min-h-screen flex flex-col items-center justify-center p-4">
+
+    <div id="app" class="w-full max-w-4xl bg-slate-900/90 backdrop-blur-md rounded-3xl border border-emerald-500/30 shadow-2xl overflow-hidden transition-all duration-300">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-r from-emerald-700 to-teal-700 p-6 text-center relative">
+            <h1 class="text-2xl md:text-3xl font-extrabold text-white tracking-wide">Leyenda Africana: La Piel del Cocodrilo</h1>
+            <p class="text-emerald-100 text-sm mt-1">Recurso Educativo Interactivo de Comprensión Lectora • Grado Quinto</p>
+            <p class="text-emerald-200 text-xs mt-2 font-medium tracking-wide">Docente: Mgtr. Jesús Álvarez Sáez</p>
+        </div>
+
+        <!-- Dynamic Content Container -->
+        <div id="content-container" class="p-6 md:p-8">
+            <!-- Content will be dynamically rendered here via JavaScript -->
+        </div>
+
+    </div>
+
+    <script>
+        const questionsData = [
+            // --- LITERALES (1 - 7) ---
+            {
+                id: 1,
+                type: "multiple",
+                category: "Literal",
+                question: "1. ¿Cómo era la piel del cocodrilo antes de que el hombre habitara la Tierra?",
+                options: [
+                    "Áspera, oscura y cubierta de pelo",
+                    "Suave, lisa y dorada que resplandecía",
+                    "Verde, rugosa y con puntos negros",
+                    "Gris, abultada y seca"
+                ],
+                correct: 1,
+                explanation: "El texto afirma explícitamente que tenía una piel suave, lisa y dorada que resplandecía."
+            },
+            {
+                id: 2,
+                type: "true_false",
+                category: "Literal",
+                question: "2. Verdadero o Falso: Al principio, el cocodrilo se pasaba todo el día sumergido en las aguas fangosas protegiendo su piel del sol.",
+                options: ["Verdadero", "Falso"],
+                correct: 0,
+                explanation: "El texto menciona que se pasaba todo el día sumergido en las aguas fangosas y solo salía de noche."
+            },
+            {
+                id: 3,
+                type: "multiple",
+                category: "Literal",
+                question: "3. ¿Cómo se sintió el cocodrilo con respecto a su hermosa piel al ver que los animales lo admiraban?",
+                options: [
+                    "Se sintió muy triste y apenado",
+                    "Se sintió muy orgulloso y comenzó a salir de día",
+                    "Se sintió aburrido y se mudó a otro río",
+                    "Se sintió enojado con los animales"
+                ],
+                correct: 1,
+                explanation: "La lectura dice textualmente: 'El cocodrilo se sintió muy orgulloso de su piel... y comenzó a salir durante el día'."
+            },
+            {
+                id: 4,
+                type: "multiple",
+                category: "Literal",
+                question: "4. ¿Qué pregunta le hacía frecuentemente el cocodrilo a sus admiradores?",
+                options: [
+                    "¿Soy el animal más rápido del pantano?",
+                    "¿Les gusta el agua fangosa?",
+                    "¿Soy muy hermoso, ¿no les parece?",
+                    "¿Por qué no vienen de noche a visitarme?"
+                ],
+                correct: 2,
+                explanation: "Su pregunta exacta ante los admiradores era: «—Soy muy hermoso, ¿no les parece?»"
+            },
+            {
+                id: 5,
+                type: "true_false",
+                category: "Literal",
+                question: "5. Verdadero o Falso: Los animales del pantano se cansaron de la actitud presumida del cocodrilo y dejaron de visitarlo.",
+                options: ["Verdadero", "Falso"],
+                correct: 0,
+                explanation: "El texto señala que pronto los animales se cansaron de su actitud presumida y dejaron de visitarlo."
+            },
+            {
+                id: 6,
+                type: "multiple",
+                category: "Literal",
+                question: "6. ¿En qué se transformó la piel del cocodrilo tras pasar tanto tiempo bajo el sol africano?",
+                options: [
+                    "En una piel dorada y brillante",
+                    "En una piel gris, abultada y escamosa",
+                    "En una coraza suave de color azul",
+                    "En una piel lisa y oscura"
+                ],
+                correct: 1,
+                explanation: "El relato indica: 'Su piel se tornó gris, abultada y escamosa'."
+            },
+            {
+                id: 7,
+                type: "multiple",
+                category: "Literal",
+                question: "7. Según el final del cuento, ¿qué hace hoy en día el cocodrilo ante la presencia de otros?",
+                options: [
+                    "Salta alegremente para mostrar sus escamas",
+                    "Desaparece de la vista dejando solo sus ojos y fosas nasales en el agua",
+                    "Se esconde en los árboles de la selva",
+                    "Sale corriendo velozmente hacia la montaña"
+                ],
+                correct: 1,
+                explanation: "El texto indica que desaparecerá de la vista dejando solo sus ojos y fosas nasales sobre la superficie."
+            },
+
+            // --- INFERENCIALES (8 - 14) ---
+            {
+                id: 8,
+                type: "multiple",
+                category: "Inferencial",
+                question: "8. ¿Por qué razón principal los otros animales decidieron dejar de visitar al cocodrilo?",
+                options: [
+                    "Porque el agua del pantano se secó por completo",
+                    "Porque se cansaron de su actitud vanidosa y presumida",
+                    "Porque tenían miedo de sus dientes afilados",
+                    "Porque el cocodrilo se mudó muy lejos"
+                ],
+                correct: 1,
+                explanation: "Se infiere por su comportamiento jactancioso que generó rechazo en los demás compañeros del pantano."
+            },
+            {
+                id: 9,
+                type: "true_false",
+                category: "Inferencial",
+                question: "9. Verdadero o Falso: El cambio físico del cocodrilo fue una consecuencia directa de su vanidad y de exponerse demasiado al sol.",
+                options: ["Verdadero", "Falso"],
+                correct: 0,
+                explanation: "El exceso de exposición solar por buscar admiración destruyó su hermosa piel original."
+            },
+            {
+                id: 10,
+                type: "multiple",
+                category: "Inferencial",
+                question: "10. ¿Qué se puede deducir sobre la conducta actual del cocodrilo mencionada al final de la leyenda?",
+                options: [
+                    "Se esconde bajo el agua porque siente pena y vergüenza de su aspecto actual",
+                    "Se esconde porque está cazando peces con mucha prisa",
+                    "Busca amigos nuevos todas las mañanas soleadas",
+                    "Se oculta porque le molestan los rayos de la luna"
+                ],
+                correct: 0,
+                explanation: "El texto explica que nunca se recuperó de la vergüenza y por eso se oculta."
+            },
+            {
+                id: 11,
+                type: "multiple",
+                category: "Inferencial",
+                question: "11. ¿Qué nos enseña el comportamiento inicial del cocodrilo en relación con la vanidad?",
+                options: [
+                    "Que presumir de uno mismo siempre trae muy buenos amigos",
+                    "Que la vanidad excesiva puede hacer que descuidemos nuestro propio bienestar",
+                    "Que es obligatorio mostrarse ante todos todo el día",
+                    "Que la belleza física es lo único importante en la vida"
+                ],
+                correct: 1,
+                explanation: "La vanidad de gustar y ser admirado lo llevó a descuidar su propio bienestar y su hermosa piel."
+            },
+            {
+                id: 12,
+                type: "multiple",
+                category: "Inferencial",
+                question: "12. ¿Qué representaban las 'aguas fangosas' para el cocodrilo al inicio de la historia?",
+                options: [
+                    "Un lugar aburrido del cual quería escapar rápido",
+                    "Un refugio seguro y protector para conservar su belleza natural",
+                    "Una trampa peligrosa creada por los cazadores",
+                    "Un sitio frío donde no podía respirar"
+                ],
+                correct: 1,
+                explanation: "Las aguas fangosas mantenían su piel protegida del sol abrasador y aseguraban su resplandor."
+            },
+            {
+                id: 13,
+                type: "true_false",
+                category: "Inferencial",
+                question: "13. Verdadero o Falso: Cuando los animales dejaron de visitarlo, el cocodrilo entendió su error y dejó de salir al sol.",
+                options: ["Verdadero", "Falso"],
+                correct: 1,
+                explanation: "Falso; pasó todo el día bajo el sol con la esperanza de recuperar la atención perdida, lo que empeoró su situación."
+            },
+            {
+                id: 14,
+                type: "multiple",
+                category: "Inferencial",
+                question: "14. ¿Cuál de los siguientes refranes se relaciona mejor con la moraleja de esta historia?",
+                options: [
+                    "A quien madruga, Dios le ayuda",
+                    "Más vale pájaro en mano que ciento volando",
+                    "El orgullo y la vanidad excesiva siempre traen malas consecuencias",
+                    "Camarón que se duerme se lo lleva la corriente"
+                ],
+                correct: 2,
+                explanation: "El orgullo desmedido del cocodrilo provocó su ruina física y el rechazo de los demás."
+            },
+
+            // --- CRÍTICOS (15 - 20) ---
+            {
+                id: 15,
+                type: "multiple",
+                category: "Crítico",
+                question: "15. ¿Te parece correcta la actitud de los animales al alejarse del cocodrilo cuando se volvió presumido? ¿Por qué?",
+                options: [
+                    "Sí, porque nadie disfruta estar con alguien que solo busca presumir y presumirse superior",
+                    "No, debieron aplaudirlo todos los días sin importar que fuera grosero",
+                    "Sí, porque los cocodrilos deben cazar a los animales del pantano",
+                    "No, porque los animales tenían la obligación de cuidarle la piel"
+                ],
+                correct: 0,
+                explanation: "Valora críticamente la convivencia sana frente a conductas soberbias o presumidas."
+            },
+            {
+                id: 16,
+                type: "multiple",
+                category: "Crítico",
+                question: "16. Si hubieras sido un amigo del cocodrilo al principio de su fama, ¿qué consejo le habrías dado?",
+                options: [
+                    "Que se echara crema solar moderna para no quemarse",
+                    "Que fuera humilde y disfrutara de su apariencia sin volverse vanidoso ni presumido",
+                    "Que atacara a los animales que no lo querían alabar",
+                    "Que se fuera a vivir al desierto caliente"
+                ],
+                correct: 1,
+                explanation: "El enfoque crítico promueve la humildade y la sensatez ante los elogios."
+            },
+            {
+                id: 17,
+                type: "true_false",
+                category: "Crítico",
+                question: "17. Verdadero o Falso: Buscar la aprobación y el aplauso de los demás a costa de dañar nuestra propia salud o bienestar es una buena decisión.",
+                options: ["Verdadero", "Falso"],
+                correct: 1,
+                explanation: "Falso; dañarse a uno mismo por agradar a otros demuestra falta de autocuidado y vanidad perjudicial."
+            },
+            {
+                id: 18,
+                type: "multiple",
+                category: "Crítico",
+                question: "18. ¿Qué enseñanza principal nos deja esta leyenda africana para nuestra vida diaria?",
+                options: [
+                    "Que debemos exponernos al sol sin protector solar",
+                    "Que la soberbia y el orgullo excesivo suelen traer consecuencias negativas que luego no podemos cambiar",
+                    "Que es mejor vivir ocultos en el agua que tener amigos en el colegio",
+                    "Que la ropa brillante es más importante que portarse bien"
+                ],
+                correct: 1,
+                explanation: "La moraleja central advierte sobre los peligros del orgullo y la vanidad."
+            },
+            {
+                id: 19,
+                type: "multiple",
+                category: "Crítico",
+                question: "19. ¿Por qué crees que las leyendas usan animales para explicar comportamientos y valores de los seres humanos?",
+                options: [
+                    "Para que las historias sean más divertidas y nos ayuden a reflexionar sobre nuestras propias actitudes",
+                    "Porque los animales reales sabían hablar latín en la antigüedad",
+                    "Para demostrarnos que los cocodrilos modernos tienen buena memoria",
+                    "Para enseñarnos matemáticas y geografía"
+                ],
+                correct: 0,
+                explanation: "Permite comprender la función pedagógica y simbólica de las leyendas tradicionales."
+            },
+            {
+                id: 20,
+                type: "multiple",
+                category: "Crítico",
+                question: "20. Si estuvieras en el lugar de los animales del pantano, ¿cómo habrías actuado ante el comportamiento presumido del cocodrilo?",
+                options: [
+                    "Ignorarlo educadamente y seguir con mi vida sin alimentar su ego ni pelear",
+                    "Insultarlo todos los días para hacerle daño y vengarme",
+                    "Alabarle aún más para que se creyera el rey del mundo",
+                    "Intentar quitarle las escamas por la fuerza"
+                ],
+                correct: 0,
+                explanation: "La postura crítica y constructiva aconseja no alimentar la soberbia y optar por la madurez."
+            }
+        ];
+
+        // Application State
+        let state = {
+            step: 'welcome', // 'welcome', 'reading', 'quiz', 'results'
+            studentName: '',
+            currentQuestionIndex: 0,
+            userAnswers: {}, // { questionId: answerIndex }
+            score: 0,
+            correctCount: 0,
+            incorrectCount: 0
+        };
+
+        // Render controller
+        function render() {
+            const container = document.getElementById('content-container');
+            container.innerHTML = '';
+
+            if (state.step === 'welcome') {
+                container.innerHTML = `
+                    <div class="text-center py-6">
+                        <div class="inline-block p-4 bg-emerald-500/20 rounded-full text-emerald-400 mb-4 text-4xl">🐊</div>
+                        <h2 class="text-2xl font-bold text-white mb-2">¡Bienvenido a la aventura de la lectura!</h2>
+                        <p class="text-slate-300 mb-6 max-w-lg mx-auto">Ingresa tu nombre completo para comenzar a leer la leyenda y superar los 20 retos de comprensión de grado quinto.</p>
+                        
+                        <div class="max-w-md mx-auto space-y-4">
+                            <input type="text" id="student-name-input" placeholder="Tu nombre completo..." 
+                                class="w-full px-4 py-3 bg-slate-800 border border-emerald-500/40 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-center font-medium text-lg"
+                                value="${state.studentName}">
+                            <button onclick="startReading()" 
+                                class="w-full py-3.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold rounded-xl shadow-lg transition transform hover:-translate-y-0.5">
+                                Comenzar Experiencia 🚀
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } else if (state.step === 'reading') {
+                container.innerHTML = `
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-center bg-slate-800/80 p-4 rounded-xl border border-slate-700">
+                            <div>
+                                <span class="text-xs text-emerald-400 font-semibold uppercase tracking-wider">Estudiante</span>
+                                <h3 class="text-lg font-bold text-white">${state.studentName}</h3>
+                            </div>
+                            <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 text-xs font-semibold rounded-full border border-emerald-500/30">Paso 1 de 2: Lectura</span>
+                        </div>
+
+                        <div class="bg-slate-800/60 p-6 md:p-8 rounded-2xl border border-slate-700 space-y-4 text-slate-200 leading-relaxed max-h-[50vh] overflow-y-auto pr-2">
+                            <h2 class="text-2xl font-bold text-emerald-400 text-center mb-4">La piel del cocodrilo</h2>
+                            <p>Cuenta la leyenda africana que, antes de que el hombre habitara la Tierra, el cocodrilo tenía una piel suave, lisa y dorada que resplandecía con los rayos del sol y a la luz de la luna.</p>
+                            <p>El cocodrilo se pasaba todo el día sumergido en las aguas fangosas protegiendo su piel del sol y solo salía de noche. Los otros animales del pantano comenzaron a notar la belleza de la piel del cocodrilo y llegaban en manada para admirarlo.</p>
+                            <p>El cocodrilo se sintió muy orgulloso de su piel y comenzó a salir durante el día para deleitarse con la admiración de los otros animales. Cada día, pasaba más y más tiempo fuera de las aguas fangosas, exponiendo su piel a los abrasadores rayos del sol africano.</p>
+                            <p>—Soy muy hermoso, ¿no les parece? —les preguntaba a sus admiradores.</p>
+                            <p>—¡Claro que sí! —respondían todos deslumbrados.</p>
+                            <p>Pronto, los animales se cansaron de la actitud presumida del cocodrilo y dejaron de visitarlo.</p>
+                            <p>El cocodrilo, con la esperanza de recuperar la atención perdida, pasó todo el día, todos los días, bajo el sol. Su piel se tornó gris, abultada y escamosa.</p>
+                            <p>El cocodrilo nunca se recuperó de la vergüenza e incluso hoy desaparecerá de la vista ante la presencia de otros, dejando solo sus ojos y sus fosas nasales sobre la superficie del agua.</p>
+                        </div>
+
+                        <div class="flex justify-end">
+                            <button onclick="startQuiz()" 
+                                class="px-8 py-3.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold rounded-xl shadow-lg transition transform hover:-translate-y-0.5 flex items-center gap-2">
+                                Ir a los 20 Retos de Comprensión ➔
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } else if (state.step === 'quiz') {
+                const q = questionsData[state.currentQuestionIndex];
+                const total = questionsData.length;
+                const progressPercent = Math.round(((state.currentQuestionIndex) / total) * 100);
+                const currentAnswer = state.userAnswers[q.id];
+
+                let optionsHTML = '';
+                q.options.forEach((opt, idx) => {
+                    const isSelected = currentAnswer === idx;
+                    optionsHTML += `
+                        <button onclick="selectOption(${idx})" 
+                            class="w-full text-left p-4 rounded-xl border transition flex items-center justify-between ${isSelected ? 'bg-emerald-600/30 border-emerald-500 text-white font-medium' : 'bg-slate-800/80 border-slate-700 text-slate-300 hover:bg-slate-800'}">
+                            <span>${opt}</span>
+                            <span class="w-6 h-6 rounded-full border ${isSelected ? 'bg-emerald-500 border-emerald-400 text-white flex items-center justify-center text-xs font-bold' : 'border-slate-600'}">${isSelected ? '✓' : ''}</span>
+                        </button>
+                    `;
+                });
+
+                container.innerHTML = `
+                    <div class="space-y-6">
+                        <!-- Progress & Info bar -->
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-slate-800/80 p-4 rounded-xl border border-slate-700">
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <span class="px-2.5 py-0.5 bg-emerald-500/20 text-emerald-400 text-xs font-bold rounded-md uppercase">${q.category}</span>
+                                    <span class="text-slate-400 text-sm">Pregunta ${state.currentQuestionIndex + 1} de ${total}</span>
+                                </div>
+                                <h3 class="text-white font-bold mt-1">${state.studentName}</h3>
+                            </div>
+                            <div class="w-full md:w-48 bg-slate-700 rounded-full h-2.5 overflow-hidden">
+                                <div class="bg-emerald-500 h-2.5 rounded-full transition-all duration-300" style="width: ${progressPercent}%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Question Box -->
+                        <div class="bg-slate-800/60 p-6 rounded-2xl border border-slate-700 space-y-4">
+                            <h4 class="text-lg md:text-xl font-semibold text-white leading-snug">${q.question}</h4>
+                            <div class="space-y-3 pt-2">
+                                ${optionsHTML}
+                            </div>
+                        </div>
+
+                        <!-- Navigation buttons -->
+                        <div class="flex justify-between items-center pt-2">
+                            <button onclick="prevQuestion()" ${state.currentQuestionIndex === 0 ? 'disabled class="opacity-50 cursor-not-allowed px-5 py-2.5 bg-slate-800 text-slate-400 rounded-xl font-medium border border-slate-700"' : 'class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-medium border border-slate-700 transition"'}">
+                                ⬅️ Anterior
+                            </button>
+                            <button onclick="nextQuestion()" class="px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold rounded-xl shadow-lg transition">
+                                ${state.currentQuestionIndex === total - 1 ? 'Finalizar y Ver Resultados 🏆' : 'Siguiente ➔'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } else if (state.step === 'results') {
+                calculateResults();
+                const total = questionsData.length;
+                const percentage = Math.round((state.score / (total * 5)) * 100);
+                
+                let badgeColor = "text-emerald-400 bg-emerald-500/20 border-emerald-500/30";
+                let message = "¡Excelente desempeño! Has comprendido profundamente la leyenda.";
+                if (percentage < 60) {
+                    message = "Puedes repasar un poco más la lectura para afianzar tus conocimientos.";
+                    badgeColor = "text-amber-400 bg-amber-500/20 border-amber-500/30";
+                } else if (percentage < 80) {
+                    message = "¡Buen trabajo! Tienes una sólida comprensión de la historia.";
+                    badgeColor = "text-teal-400 bg-teal-500/20 border-teal-500/30";
+                }
+
+                container.innerHTML = `
+                    <div class="text-center space-y-6 py-4">
+                        <div class="inline-block p-4 bg-emerald-500/20 rounded-full text-emerald-400 text-5xl mb-2 animate-bounce">🏆</div>
+                        <h2 class="text-3xl font-extrabold text-white">¡Resultados Finales!</h2>
+                        
+                        <div class="bg-slate-800/80 p-6 rounded-2xl border border-slate-700 max-w-md mx-auto space-y-4">
+                            <div>
+                                <span class="text-xs text-slate-400 uppercase tracking-widest font-semibold">Estudiante Evaluado</span>
+                                <h3 class="text-2xl font-bold text-emerald-400">${state.studentName}</h3>
+                                <p class="text-xs text-slate-400 mt-1">Docente: Mgtr. Jesús Álvarez Sáez</p>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4 pt-2 border-t border-slate-700">
+                                <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+                                    <span class="text-xs text-slate-400 block">Puntuación Total</span>
+                                    <span class="text-xl font-bold text-white">${state.score} / ${total * 5} pts</span>
+                                </div>
+                                <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+                                    <span class="text-xs text-slate-400 block">Calificación (sobre 100)</span>
+                                    <span class="text-2xl font-extrabold text-emerald-400">${percentage} <span class="text-xs font-normal">/ 100</span></span>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4 pt-2">
+                                <div class="text-emerald-400 bg-emerald-500/10 p-2.5 rounded-xl border border-emerald-500/20 text-sm font-semibold">
+                                    ✅ Respuestas Acertadas: ${state.correctCount}
+                                </div>
+                                <div class="text-rose-400 bg-rose-500/10 p-2.5 rounded-xl border border-rose-500/20 text-sm font-semibold">
+                                    ❌ Respuestas Incorrectas: ${state.incorrectCount}
+                                </div>
+                            </div>
+
+                            <div class="p-3 rounded-xl border ${badgeColor} text-sm font-medium">
+                                ${message}
+                            </div>
+                        </div>
+
+                        <div class="flex justify-center gap-4 pt-2">
+                            <button onclick="restartQuiz()" 
+                                class="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold rounded-xl border border-slate-700 transition">
+                                🔄 Volver a Intentar
+                            </button>
+                            <button onclick="window.print()" 
+                                class="px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold rounded-xl shadow-lg transition">
+                                🖨️ Imprimir Certificado / Resultados
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Action Handlers
+        function startReading() {
+            const input = document.getElementById('student-name-input');
+            const name = input ? input.value.trim() : '';
+            if (!name) {
+                alert("Por favor, ingresa tu nombre completo para continuar.");
+                return;
+            }
+            state.studentName = name;
+            state.step = 'reading';
+            render();
+        }
+
+        function startQuiz() {
+            state.step = 'quiz';
+            state.currentQuestionIndex = 0;
+            render();
+        }
+
+        function selectOption(optionIndex) {
+            const q = questionsData[state.currentQuestionIndex];
+            state.userAnswers[q.id] = optionIndex;
+            render();
+        }
+
+        function nextQuestion() {
+            const q = questionsData[state.currentQuestionIndex];
+            if (state.userAnswers[q.id] === undefined) {
+                alert("Por favor selecciona una opción antes de continuar.");
+                return;
+            }
+
+            if (state.currentQuestionIndex < questionsData.length - 1) {
+                state.currentQuestionIndex++;
+                render();
+            } else {
+                state.step = 'results';
+                render();
+            }
+        }
+
+        function prevQuestion() {
+            if (state.currentQuestionIndex > 0) {
+                state.currentQuestionIndex--;
+                render();
+            }
+        }
+
+        function calculateResults() {
+            let correct = 0;
+            let incorrect = 0;
+
+            questionsData.forEach(q => {
+                const userAns = state.userAnswers[q.id];
+                if (userAns === q.correct) {
+                    correct++;
+                } else {
+                    incorrect++;
+                }
+            });
+
+            state.correctCount = correct;
+            state.incorrectCount = incorrect;
+            state.score = correct * 5; // 20 questions * 5 pts = 100 max score
+        }
+
+        function restartQuiz() {
+            state.step = 'welcome';
+            state.currentQuestionIndex = 0;
+            state.userAnswers = {};
+            state.score = 0;
+            state.correctCount = 0;
+            state.incorrectCount = 0;
+            render();
+        }
+
+        // Initial load
+        window.onload = function() {
+            render();
+        };
+    </script>
+
+</body>
+</html>
